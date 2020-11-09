@@ -1,18 +1,23 @@
 import React, {Component} from 'react'
-import { Card, CardImg, CardBody, CardText, CardTitle, CardSubtitle } from 'reactstrap'
+import { CardDeck } from 'reactstrap'
+import RenderCard from './Card'
 
-function RenderCard({data}) {
+function RenderList({data}) {
+    let itemList = data.map((item) => {
+        return(
+            <div className="col-md-6 col-lg-3">
+                <RenderCard data={item}/>
+            </div>
+        )
+    })
     return(
-        <Card>
-            <CardImg top width="100%" src="https://i.scdn.co/image/ab67616d00001e02da5bdd458a08bac182e9ecfb" />
-            <CardBody>
-                <CardTitle>{data.artists[0].name}</CardTitle>
-                <CardSubtitle>{data.name}</CardSubtitle>
-            </CardBody>
-        </Card>
+        <div className="row mt-5">
+            <CardDeck>
+                {itemList}
+            </CardDeck>
+        </div>
     )
 }
-
 
 class List extends Component {
     constructor(props){
@@ -28,7 +33,7 @@ class List extends Component {
         fetch('https://api.spotify.com/v1/browse/new-releases?country=CO&limit=10&offset=0',{
             method: 'GET',
             headers: {
-                Authorization: 'Bearer BQBvLFZsGAaiIzma-hPRJ6uXxgFIcNdxipJU1liuqUB9TuYrwTkAHoM30nlhYaXJ4AVtJeKmPTRu1EJyK_pAR1rIHkiXWZjU8G-4vZVIkuVMXMq2t3JXMa2ymndis-prD7YHxpybQZpNS1It1uao0dOBU64ia4s'
+                Authorization: 'Bearer BQC0FF7E85JeZ_Tlfe0od6ml-5Xj2az4ZFZGbhKveNcr3IL5ON3uRuL58csaR_RqI_5AXx1hfcWH7LReHpFe4e_4bn3GTXeiXt_nEjZ2rNI62P-AjRPaZs_3-5yul1VC1BQbltiauXOUSbXWAq-GPvsbePPhCOo'
             }
         })
         .then(res => res.json())
@@ -37,7 +42,7 @@ class List extends Component {
                 isLoaded: true,
                 data: result.albums.items
             })
-            console.log(this.state.data[0].images[1].url)
+            console.log(this.state.data)
         }, (err) => {
             this.setState({
                 error: err, 
@@ -56,8 +61,8 @@ class List extends Component {
             return <div>Loading...</div>
         } else {
             return(
-                <div>
-                    <RenderCard data={this.state.data}/>
+                <div className="container">
+                    <RenderList data={this.state.data}/>
                 </div>
             ) 
         }
