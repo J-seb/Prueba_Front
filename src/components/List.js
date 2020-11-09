@@ -5,7 +5,7 @@ import RenderCard from './Card'
 function RenderList({data}) {
     let itemList = data.map((item) => {
         return(
-            <div className="col-md-6 col-lg-3">
+            <div key={item.id} className="col-md-6 col-lg-3">
                 <RenderCard data={item}/>
             </div>
         )
@@ -33,7 +33,7 @@ class List extends Component {
         fetch('https://api.spotify.com/v1/browse/new-releases?country=CO&limit=10&offset=0',{
             method: 'GET',
             headers: {
-                Authorization: 'Bearer BQC0FF7E85JeZ_Tlfe0od6ml-5Xj2az4ZFZGbhKveNcr3IL5ON3uRuL58csaR_RqI_5AXx1hfcWH7LReHpFe4e_4bn3GTXeiXt_nEjZ2rNI62P-AjRPaZs_3-5yul1VC1BQbltiauXOUSbXWAq-GPvsbePPhCOo'
+                Authorization: 'Bearer BQA8gQHLPCwBPDA2js7LvkcoHCSAbIqCA6FkqFWWPGcNcJy2a6Y0xy-lfQbk1wsg9Zw26kOPTg1NFSN7MsWeTd5VP2HSwRHbKGgVVM38hHPczLj7NoD7Winzdplhmg7bpb7gn4nr8d2kfk12Mft1GXcOZkOoL4I'
             }
         })
         .then(res => res.json())
