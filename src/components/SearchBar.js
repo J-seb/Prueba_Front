@@ -29,6 +29,7 @@ class SearchBar extends Component {
 
     render() {
         return(
+            <div>
             <Navbar style={{backgroundColor: "#262628"}}>
                 <div className="container-fluid">
                     <div className="row align-items-center w-100">
@@ -73,6 +74,7 @@ class SearchBar extends Component {
                     </div>
                 </div>
             </Navbar>
+            </div>
         )
     }
 }

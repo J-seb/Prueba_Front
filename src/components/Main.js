@@ -9,7 +9,7 @@ class Main extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            token: 'Bearer BQAgD3dw1Zxy5nGbD85J9HVwrHhQe8JGpYz2WuTLLnhrHjEAJPwaIryeAavNsd_e0WTGInyO_AFakhv8yYtTQtFCqy8ZoiuWCAAzxS5iUzuMsEeI8cicp-qnkqgMFCeJaIANegOIa-Lc5UUDdmbbmcKUMXTOBmE',
+            token: 'Bearer BQDcyZpt3uiSg7nn4Lkj6g7jwJu4lXQQZMcMsLb4KuIYnX2M2N7fi3vUt1mK1MA7CsuRYSTJ201DAs9OjbvgH47H8vPZC_T5-OuMAC2TxsZuUykSS6yTep0PWtkgpveri6qDcDERHze61VDQgBE4ibX-ZkJ2Bm4',
             releases: [],
             errorR: null,
             artists: [],
@@ -173,13 +173,19 @@ class Main extends React.Component {
     render() {
         
         return(
-            <div>
+            <div className="container-fluid" style={{padding: 0}}>
                 <SearchBar artistName={this.state.searchArtist} 
                             trackName={this.state.searchTrack} 
                             onArtistChange={this.handleArtistChange} 
                             onTrackChange={this.handleTrackChange}
                             lastKeyTrack={this.handleLastKeyTrack}
                             lastKeyArtist={this.handleLastKeyArtist}/>
+                <span className="fa fa-arrow-circle-left fa-2x" 
+                        style={{position: "absolute", right: "14%", top: "28%"}} 
+                        onClick={this.props.history.goBack}/>
+                <span className="fa fa-arrow-circle-right fa-2x" 
+                        style={{position: "absolute", right: "8%", top:"28%"}} 
+                        onClick={this.props.history.goForward}/>
                 <Switch>
                     <Route path="/releases" component={() => <Releases data={this.state.releases} error={this.state.errorR}/>} />
                     <Route exact path="/artists" component={() => <Artists data={this.state.artists} error={this.state.errorA}/>} />
