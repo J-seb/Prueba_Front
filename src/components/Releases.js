@@ -5,14 +5,21 @@ class Releases extends React.Component {
     constructor(props) {
         super(props)
     }
-    
     render() {
-        console.log(this.props.data)
-        return(
-            <div>
-                <List data={this.props.data}/>
-            </div>
-        )
+        if (this.props.data) {
+            return(
+                <div>
+                    <h3 style={{color: "white", marginTop: "2em"}}>Nuevos Lanzamientos</h3>
+                    <List data={this.props.data}/>
+                </div>
+            )
+        } else {
+            return(
+                <div>
+                    <h3 style={{color: "white", marginTop: "2em"}}>{this.props.error}</h3>
+                </div>
+            )
+        }
     }
 }
 

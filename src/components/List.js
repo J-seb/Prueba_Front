@@ -5,7 +5,7 @@ import RenderCard from './Card'
 function RenderList({data}) {
     let itemList = data.map((item) => {
         return(
-            <div key={item.id} className="col-md-6 col-lg-3">
+            <div key={item.id} className="col-md-3 col-lg-2">
                 <RenderCard data={item}/>
             </div>
         )

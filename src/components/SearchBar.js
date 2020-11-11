@@ -5,18 +5,26 @@ class SearchBar extends Component {
 
     constructor(props) {
         super(props)
-        this.state = {
-            artista: '',
-            cancion: ''
-        }
+        this.handleChangeArtist = this.handleChangeArtist.bind(this)
+        this.handleLastKeyArtist = this.handleLastKeyArtist.bind(this)
+        this.handleChangeTrack = this.handleChangeTrack.bind(this)
+        this.handleLastKeyTrack = this.handleLastKeyTrack.bind(this)
     }
 
-    handleChangeArtista(e) {
-        this.setState({artista: e.target.value})
+    handleChangeArtist(e) {
+        this.props.onArtistChange(e.target.value)
     }
 
-    handleChangeCancion(e) {
-        this.setState({cancion: e.target.value})
+    handleLastKeyArtist(e) {
+        this.props.lastKeyArtist(e.key)
+    }
+
+    handleChangeTrack(e) {
+        this.props.onTrackChange(e.target.value)
+    }
+
+    handleLastKeyTrack(e) {
+        this.props.lastKeyTrack(e.key)
     }
 
     render() {
@@ -37,11 +45,13 @@ class SearchBar extends Component {
                                         <InputGroupText className="border-0 rounded-0 border-right-0" style={{backgroundColor: "#323234"}}>
                                             <span className="fa fa-search text-secondary"></span>
                                         </InputGroupText>
-                                        <Input placeholder="Buscar Artista" 
+                                        <Input placeholder="Buscar Artista"
+                                            type="search"
                                             className="border-0 text-secondary rounded-right border-left-0" 
                                             style={{backgroundColor: "#323234"}}
-                                            value={this.state.artista}
-                                            onChange={(e) => this.handleChangeArtista(e)}></Input>
+                                            value={this.props.artistName}
+                                            onKeyDown={(e) => this.handleLastKeyArtist(e)}
+                                            onChange={(e) => this.handleChangeArtist(e)}></Input>
                                     </InputGroup>
                                 </div>
                                 <div className="col-lg-4 offset-lg-1">
@@ -49,11 +59,13 @@ class SearchBar extends Component {
                                         <InputGroupText className="border-0 rounded-0 border-right-0" style={{backgroundColor: "#323234"}}>
                                             <span className="fa fa-search text-secondary"></span>
                                         </InputGroupText>
-                                        <Input placeholder="Buscar Canción" 
+                                        <Input placeholder="Buscar Canción"
+                                            type="search"
                                             className="border-0 text-secondary rounded-right border-left-0" 
                                             style={{backgroundColor: "#323234"}}
-                                            value={this.state.cancion}
-                                            onChange={(e) => this.handleChangeCancion}></Input>
+                                            value={this.props.trackName}
+                                            onKeyDown={(e) => this.handleLastKeyTrack(e)}
+                                            onChange={(e) => this.handleChangeTrack(e)}></Input>
                                     </InputGroup>
                                 </div> 
                             </div>
